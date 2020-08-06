@@ -1,0 +1,7 @@
+Property Binding `[personList]="persons"`
+
+Event binding `(click)="onCreatePerson()" binding to a method`
+
+String Interpolation with directive `<li *ngFor="let person of personList">{{ person }}</li>`
+
+Two Way binding `<input type="text" id="name" [(ngModel)]="enteredPersonName" />`

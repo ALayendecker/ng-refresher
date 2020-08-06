@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./person-input.component.css'],
 })
 //pascal case
-export class PersonInputComponent {}
+export class PersonInputComponent {
+  enteredPersonName = '';
+
+  onCreatePerson() {
+    console.log('created a person: ' + this.enteredPersonName);
+    //two way binding allowed
+    this.enteredPersonName = '';
+  }
+}
