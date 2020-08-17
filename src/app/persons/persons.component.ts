@@ -1,5 +1,9 @@
 //Input is a decorator that allows us to bind components
-import { Component, Input } from '@angular/core';
+// don't need a bindable input anymore if we're using services
+import { Component, OnInit } from '@angular/core';
+
+import { PersonsService } from './persons.service';
+import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 
 //dont forget to register component in app.module.ts
 @Component({
@@ -7,6 +11,21 @@ import { Component, Input } from '@angular/core';
   selector: 'app-persons',
   templateUrl: './persons.component.html',
 })
-export class PersonsComponent {
-  @Input() personList: string[];
+export class PersonsComponent implements OnInit {
+  personList: string[];
+  //long form instead of shorthand
+  // private personService: PersonsService;
+
+  // now i want to grab my data from my persons services
+  constructor(private personService: PersonsService) {
+    //this.personList = personService.persons;
+    // instead of using it like this we should be doing lifecycle hooks instead
+    this.personService = personService;
+    // there is a shortcut using this but instead providing private when passing in personService in the constructor function
+  }
+
+  // this gets fired when our component is created essentially on component did mount
+  ngOnInit() {
+    this.personList = this.personService.persons;
+  }
 }
