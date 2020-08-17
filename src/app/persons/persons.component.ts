@@ -3,7 +3,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { PersonsService } from './persons.service';
-import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 
 //dont forget to register component in app.module.ts
 @Component({
