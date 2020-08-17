@@ -11,4 +11,9 @@ export class AppComponent {
   title = 'ng-refresher';
   //the persons example is redundant in this instance but shows forced types
   persons: string[] = ['Max', 'Ted', 'Anna'];
+
+  // these higher level component.ts files are where I can call methods refered to fromt eh component.html
+  onPersonCreated(name: string) {
+    this.persons.push(name);
+  }
 }
