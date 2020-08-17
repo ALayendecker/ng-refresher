@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   //kebab case
@@ -8,11 +8,15 @@ import { Component } from '@angular/core';
 })
 //pascal case
 export class PersonInputComponent {
+  // store the constructor function into the person create
+  // <> are how we pass data into the constructor function EventEmitter
+  @Output() personCreate = new EventEmitter<string>();
   enteredPersonName = '';
 
   onCreatePerson() {
     console.log('created a person: ' + this.enteredPersonName);
     //two way binding allowed
+    this.personCreate.emit(this.enteredPersonName);
     this.enteredPersonName = '';
   }
 }
