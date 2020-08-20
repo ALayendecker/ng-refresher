@@ -11,7 +11,10 @@ import { PersonsService } from './persons.service';
   templateUrl: './persons.component.html',
 })
 export class PersonsComponent implements OnInit, OnDestroy {
-  personList: string[];
+  personList: string[] = [];
+
+  isFetching = false;
+
   private personListSubs: Subscription;
   //long form instead of shorthand
   // private personService: PersonsService;
@@ -26,12 +29,16 @@ export class PersonsComponent implements OnInit, OnDestroy {
 
   // this gets fired when our component is created essentially on component did mount
   ngOnInit() {
-    this.personList = this.personService.persons;
+    // grabbing my method fetchPersons from service
+    // this.personList = this.personService.persons;
     this.personListSubs = this.personService.personsChanged.subscribe(
       (persons) => {
         this.personList = persons;
+        this.isFetching = false;
       }
     );
+    this.isFetching = true;
+    this.personService.fetchPersons();
   }
 
   // we need destroy when working with subscribes and subjects in order to prevent memory leaks from hanging subscriptions

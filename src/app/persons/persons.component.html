@@ -1,4 +1,10 @@
-<ul>
+<!--
+  angular allows for conditional renders using ngIf
+  all we had to do was set the boolean to toggle inside our class and ngOnInit
+-->
+<p *ngIf="isFetching">Loading...</p>
+
+<ul *ngIf="!isFetching">
   <!-- ngfor can be used to loop inside html this is called a directive -->
   <li *ngFor="let person of personList" (click)="onRemovePerson(person)">
     {{ person }}
